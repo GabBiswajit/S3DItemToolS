@@ -32,7 +32,7 @@ class EventListener implements Listener{
 
     public function onPlayerItemdHeld(PlayerItemHeldEvent $event): void{
         $player = $event->getPlayer();
-        $item   = $event->getItem();
+        $item = $event->getItem();
 
         if (!is_null($item->getNamedTagEntry("3d_model"))) {
             if (($reflection = SkinFactory::getInstance()->getSkinReflection($item->getNamedTagEntry("3d_model")->getValue())) instanceof SkinReflection) {
