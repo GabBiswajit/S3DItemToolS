@@ -56,7 +56,7 @@ final class PlayerSkin{
      */
     public function makeSkinImage(Player $player): void{
         $skinPath = $this->plugin->getDataFolder() . "skins" . DIRECTORY_SEPARATOR . $player->getLowerCaseName() . ".png";
-        $image    = $this->convertSkinImage($player->getSkin()->getSkinData());
+        $image = $this->convertSkinImage($player->getSkin()->getSkinData());
         $background = imagecolorallocate($image, 255, 255, 255);
         imagecolortransparent($image, $background);
         imagepng($image, $skinPath);
@@ -97,14 +97,15 @@ final class PlayerSkin{
      * @param Player $player
      * @param string $resource
      */
+   
     public function convertImagemerge(Player $player, string $resource): void{
         $playerImage = imagecreatefrompng($this->plugin->getDataFolder() . "skins" . DIRECTORY_SEPARATOR . $player->getLowerCaseName() . ".png");
-        $modelImage  = imagecreatefrompng($this->plugin->getDataFolder() . "images" . DIRECTORY_SEPARATOR . $resource . ".png");
+        $modelImage = imagecreatefrompng($this->plugin->getDataFolder() . "images" . DIRECTORY_SEPARATOR . $resource . ".png");
         [$width, $height] = getimagesize($this->plugin->getDataFolder() . "skins" . DIRECTORY_SEPARATOR . $player->getLowerCaseName() . ".png");
         imagecopymerge($playerImage, $modelImage, 56, 16, 0, 0, $width, $height, 100);
         imagesavealpha($playerImage, true);
         imagepng($playerImage, $this->plugin->getDataFolder() . "images" . DIRECTORY_SEPARATOR . $player->getLowerCaseName() . ".png");
-
+    // Incomplete Todo !!
         imagedestroy($playerImage);
         imagedestroy($modelImage);
     }
